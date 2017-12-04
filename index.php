@@ -6,5 +6,5 @@ require_once("config.php");//Importamos o config.php com o autoload
 //$sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :id", array(":id" => 1));
 
 $usuario = new Usuario();
-$usuario->loadById(1);
+$usuario->insertUsuario("MatheusMouraTeste2", "testedesenhanova2");
  ?>

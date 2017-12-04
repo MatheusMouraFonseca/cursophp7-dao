@@ -34,6 +34,10 @@ class Sql extends PDO{
 		return $resultados->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	public function insertUser($queryBruta, $parametros = array()){
+		$this->query($queryBruta, $parametros);
+
+	}
 
 
 }#Fecha a classe Sql

@@ -56,6 +56,17 @@ class Usuario{
 
 	}//Fechando a loadById
 
+	public function insertUsuario($login, $senha){
+		$sql = new Sql();
+		$this->setDeslogin($login);//Faço tratamento das informações antes de irem para o banco de dados
+		$this->setDessenha($senha);
+
+		$sql->insertUser("INSERT INTO tb_usuarios (deslogin, dessenha) VALUES (:LOGIN, :SENHA)", $parametros = array(
+			":LOGIN" => $this->getDeslogin(),
+			":SENHA" => $this->getDessenha()
+		));		
+	}
+
 }//Fechando classe Usuario
 
 
