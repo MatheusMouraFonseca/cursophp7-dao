@@ -65,7 +65,45 @@ class Usuario{
 			":LOGIN" => $this->getDeslogin(),
 			":SENHA" => $this->getDessenha()
 		));		
+	}//Fechando o metodo insertUsuario
+
+	public static function getList(){
+		$sql = new Sql();
+		return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
 	}
+
+	public static function search($login){
+		$sql = new Sql();
+		
+		return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
+			':SEARCH' => "%".$login."%"
+		));
+	}
+
+	public function login($login, $password){
+		$sql = new Sql();
+		
+		$resultados = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", $parametros = array(
+			":LOGIN" =>$login,
+			":PASSWORD" => $password
+		));
+
+		$resultado = $resultados[0];
+
+		if(isset($resultados)){
+
+			$this->setIdusuario($resultado['idusuario']);
+			$this->setDeslogin($resultado['deslogin']);
+			$this->setDessenha($resultado['dessenha']);
+			$this->setDtcadastro($resultado['dtcadastro']);
+			}else{
+
+				throw new Exception("Login e/ou senha inválidos.");
+				
+			}
+
+
+	}//Fechando fumção login
 
 }//Fechando classe Usuario
 
