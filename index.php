@@ -21,7 +21,5 @@ require_once("config.php");//Importamos o config.php com o autoload
 //carrega um usuario usando o login e a senha
 
 $usuario = new Usuario();
-$usuario->login("MatheusMouraTeste", "testedesenhanova");
-
-echo json_encode($usuario);
+echo $usuario->login("jose", "1234567890");
  ?>

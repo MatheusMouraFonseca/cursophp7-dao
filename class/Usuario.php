@@ -84,26 +84,30 @@ class Usuario{
 		$sql = new Sql();
 		
 		$resultados = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", $parametros = array(
-			":LOGIN" =>$login,
-			":PASSWORD" => $password
+			":LOGIN" => $login,
+			":PASSWORD" =>$password
 		));
 
 		$resultado = $resultados[0];
-
-		if(isset($resultados)){
-
+		if(isset($resultado)){
 			$this->setIdusuario($resultado['idusuario']);
 			$this->setDeslogin($resultado['deslogin']);
 			$this->setDessenha($resultado['dessenha']);
 			$this->setDtcadastro($resultado['dtcadastro']);
-			}else{
-
-				throw new Exception("Login e/ou senha inválidos.");
-				
 			}
-
-
+	
 	}//Fechando fumção login
+
+	public function __toString(){
+		return json_encode(array(
+			"idusuario" =>$this->getIdusuario(),
+			"deslogin" =>$this->getDeslogin(),
+			"dessenha" =>$this->getDessenha(),
+			"dtcadastro" =>$this->getDtcadastro()
+
+		));
+
+	}
 
 }//Fechando classe Usuario
 
